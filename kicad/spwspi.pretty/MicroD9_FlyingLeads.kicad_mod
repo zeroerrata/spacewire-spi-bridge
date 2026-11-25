@@ -1,0 +1,244 @@
+(footprint "MicroD9_FlyingLeads"
+	(version 20260206)
+	(generator "zeroerrata")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Solder pads for a 9-way micro-D receptacle with flying leads (SpaceWire, ECSS-E-ST-50-12C 5.3.6); pads = contact numbers, pair order")
+	(tags "SpaceWire micro-D MDM flying leads")
+	(property "Reference" "REF**"
+		(at -11.430 -2.4 0)
+		(layer "F.SilkS")
+		(uuid "3556b99d-6b51-58ef-b86e-236e736b26b6")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "MicroD9_FlyingLeads"
+		(at 0 4.2 0)
+		(layer "F.Fab")
+		(uuid "77b715e4-9b92-5167-bddc-15f479139959")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(attr through_hole exclude_from_pos_files)
+	(fp_rect
+		(start -13.080 -1.400)
+		(end 13.080 3.400)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "331b6466-1656-5e46-b4ea-0a5c80f20428")
+	)
+	(fp_rect
+		(start -12.830 -1.150)
+		(end 12.830 1.150)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "591d00ce-956d-556d-af4a-da47438c7ca4")
+	)
+	(pad "6" thru_hole circle
+		(at -11.430 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "f2d920fa-7347-53fd-8180-2b50f1a129c3")
+	)
+	(pad "1" thru_hole rect
+		(at -8.890 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "d1263403-bffd-5500-b4ff-46a6c57c0f23")
+	)
+	(pad "2" thru_hole circle
+		(at -6.350 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "a9c6c5a0-70ba-5924-a51e-d4a7adddefb6")
+	)
+	(pad "7" thru_hole circle
+		(at -3.810 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "cb197f2f-87e2-541b-a78f-5fd052af2560")
+	)
+	(pad "3" thru_hole circle
+		(at -1.270 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "6c647418-4475-56c3-8774-ba1be1c1be3c")
+	)
+	(pad "4" thru_hole circle
+		(at 1.270 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "38cef2a0-29ec-5885-bf55-09566544a55e")
+	)
+	(pad "8" thru_hole circle
+		(at 3.810 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "8930c439-7146-5e3e-9f6f-02ff857be1c0")
+	)
+	(pad "9" thru_hole circle
+		(at 6.350 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "95433c06-69f8-58b8-8a79-c96cad58337f")
+	)
+	(pad "5" thru_hole circle
+		(at 8.890 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "1cab46c7-947a-5c07-bd1f-a27656b7202f")
+	)
+	(pad "SH" thru_hole circle
+		(at 11.430 0)
+		(size 1.8 1.8)
+		(drill 1.0)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "373fa2c7-1f04-5985-9ea9-27d9d42466a5")
+	)
+	(fp_text user "DI-"
+		(at -11.430 2.2 90)
+		(layer "F.SilkS")
+		(uuid "a6cf5e86-1a6f-5ec9-8646-a8dc60f242eb")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "DI+"
+		(at -8.890 2.2 90)
+		(layer "F.SilkS")
+		(uuid "7d29d17c-2543-5ceb-a2b2-e379ade58648")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "SI+"
+		(at -6.350 2.2 90)
+		(layer "F.SilkS")
+		(uuid "f8b581ef-419b-5e3c-9f9c-793e209b4da5")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "SI-"
+		(at -3.810 2.2 90)
+		(layer "F.SilkS")
+		(uuid "ba2c8337-6945-57d4-908f-a568f9fc079a")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "SHI"
+		(at -1.270 2.2 90)
+		(layer "F.SilkS")
+		(uuid "8f07a5dd-dc34-5207-a09f-ed4c2455030f")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "SO-"
+		(at 1.270 2.2 90)
+		(layer "F.SilkS")
+		(uuid "2dd3ecc7-49d3-5184-94aa-2698556e6c07")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "SO+"
+		(at 3.810 2.2 90)
+		(layer "F.SilkS")
+		(uuid "14227963-65cc-5eb6-998c-e0dd2d3429e5")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "DO+"
+		(at 6.350 2.2 90)
+		(layer "F.SilkS")
+		(uuid "3567aefa-0610-5de8-8855-de39e614d633")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "DO-"
+		(at 8.890 2.2 90)
+		(layer "F.SilkS")
+		(uuid "38330ed2-cd97-50fd-95d9-d0d93ca347f5")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "SHL"
+		(at 11.430 2.2 90)
+		(layer "F.SilkS")
+		(uuid "1d769e71-b3fe-5cbc-804a-8b71e7f0fd8f")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+		)
+	)
+	(embedded_fonts no)
+)

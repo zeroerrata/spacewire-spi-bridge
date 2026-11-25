@@ -1,0 +1,102 @@
+(version 1)
+# Fab minimums live in Board Setup > Constraints (JLCPCB standard + margin). These rules add intent.
+
+# --- power: never thinner than 0.3 mm, except a short neck-down into fine-pitch pads
+(rule "power_min_width"
+  (condition "A.NetClass == 'Power'")
+  (constraint track_width (min 0.3mm) (opt 0.5mm)))
+(rule "power_neckdown_at_fine_pads"
+  (condition "A.NetClass == 'Power' && A.intersectsCourtyard('U*')")
+  (constraint track_width (min 0.2mm)))
+
+# --- high voltage (> 30 V): 0.6 mm on outer layers (IPC-2221B B2, 51-100 V), 0.3 mm inner
+(rule "hv_clearance_outer"
+  (layer outer)
+  (condition "A.NetClass == 'HV' && B.NetClass != 'HV'")
+  (constraint clearance (min 0.6mm)))
+(rule "hv_clearance_inner"
+  (layer inner)
+  (condition "A.NetClass == 'HV' && B.NetClass != 'HV'")
+  (constraint clearance (min 0.3mm)))
+
+
+# --- mechanical: copper keeps away from NPTH (screw heads, bosses)
+(rule "npth_to_copper"
+  (condition "A.Pad_Type == 'NPTH, mechanical'")
+  (constraint hole_clearance (min 0.4mm)))
+
+# --- fine-pitch: allow 0.127 mm only inside courtyards of ICs (neck-down for QFN/BGA escape)
+(rule "fanout_width"
+  (condition "A.Type == 'Track' && A.intersectsCourtyard('U*')")
+  (constraint track_width (min 0.127mm)))
+
+# --- 4-layer stack S / GND / GND(+power islands) / S: In1 is the unbroken reference plane
+(rule "in1_gnd_plane_no_tracks"
+  (layer "In1.Cu")
+  (constraint disallow track))
+
+# Controlled nets stay on the outer layers over the In1 GND plane (In2 has power islands: no reference).
+(rule "hs_outer_only"
+  (layer inner)
+  (condition "A.NetClass == 'RF50' || A.NetClass == 'DIFF90' || A.NetClass == 'DIFF100' || A.NetClass == 'DIFF85'")
+  (constraint disallow track))
+
+# RF50: CPWG 0.155 mm, gap 0.3 mm to the GND pour = 50.1 ohm (as plain microstrip 50.5 ohm)
+(rule "rf50_geometry"
+  (layer outer)
+  (condition "A.NetClass == 'RF50'")
+  (constraint track_width (min 0.135mm) (opt 0.155mm) (max 0.175mm)))
+(rule "rf50_no_vias"
+  (condition "A.NetClass == 'RF50'")
+  (constraint via_count (max 0)))
+(rule "rf50_keep_signals_away"
+  (condition "A.NetClass == 'RF50' && B.NetClass != 'RF50' && B.NetName != 'GND'")
+  (constraint clearance (min 0.5mm)))
+
+
+# DIFF100: 0.1 / 0.127 mm on F.Cu/B.Cu = 100.0 ohm differential, 5.61 ps/mm
+(rule "diff100_geometry"
+  (layer outer)
+  (condition "A.NetClass == 'DIFF100'")
+  (constraint track_width (min 0.085mm) (opt 0.1mm) (max 0.115mm))
+  (constraint diff_pair_gap (min 0.11mm) (opt 0.127mm) (max 0.14mm)))
+(rule "diff100_skew"
+  (condition "A.NetClass == 'DIFF100'")
+  (constraint skew (max 0.15mm) (within_diff_pairs)))
+(rule "diff100_uncoupled"
+  (condition "A.NetClass == 'DIFF100'")
+  (constraint diff_pair_uncoupled (max 3mm)))
+(rule "diff100_via_budget"
+  (condition "A.NetClass == 'DIFF100'")
+  (constraint via_count (max 2)))
+(rule "diff100_spacing"
+  (condition "A.NetClass == 'DIFF100' && !AB.isCoupledDiffPair() && B.NetName != 'GND'")
+  (constraint clearance (min 0.3mm)))
+
+
+# Escape from fine-pitch / BGA packages: the pair may neck down inside the IC courtyard only (keep it < 1-2 mm)
+(rule "hs_fanout_neckdown"
+  (condition "(A.NetClass == 'DIFF90' || A.NetClass == 'DIFF100' || A.NetClass == 'DIFF85') && A.intersectsCourtyard('U*')")
+  (constraint track_width (min 0.09mm))
+  (constraint diff_pair_gap (min 0.09mm)))
+
+# --- this board
+# SpaceWire LVDS at 100 Mbit/s (10 ns bit, edges > 0.5 ns): the pairs split at the 2.54 mm lab-header / micro-D rows
+# (decision 16: J5 over J4, about 7 mm of single lines) and around the 100 ohm terminations; 2 mm of intra-pair skew
+# is 11 ps. The coupled stretch keeps the 100 ohm geometry of the template.
+(rule "diff100_spacewire_rows"
+  (condition "A.NetClass == 'DIFF100'")
+  (constraint skew (max 2mm) (within_diff_pairs))
+  (constraint diff_pair_uncoupled (max 14mm)))
+# where the pairs split (the 2.54 mm rows, the termination pads) the gap is set by the pads, not by the 100 ohm geometry
+(rule "diff100_split_gap"
+  (condition "A.NetClass == 'DIFF100' && (A.intersectsCourtyard('J5') || A.intersectsCourtyard('J4') || A.intersectsCourtyard('R16') || A.intersectsCourtyard('R17'))")
+  (constraint diff_pair_gap (min 0.11mm) (max 3mm)))
+# the SN65LVDS049 LVDS pins are 0.65 mm apart (0.25 mm pad to pad): neighbouring pairs keep 0.2 mm inside its courtyard
+(rule "diff100_at_lvds049"
+  (condition "A.NetClass == 'DIFF100' && A.intersectsCourtyard('U4') && !AB.isCoupledDiffPair() && B.NetName != 'GND'")
+  (constraint clearance (min 0.2mm)))
+# the single lines between J5 and J4 are 2.54 mm apart (no coupling): plain clearance to the neighbours
+(rule "diff100_spacing_rows"
+  (condition "A.NetClass == 'DIFF100' && !AB.isCoupledDiffPair() && B.NetName != 'GND' && (A.intersectsCourtyard('J5') || A.intersectsCourtyard('J4'))")
+  (constraint clearance (min 0.2mm)))
