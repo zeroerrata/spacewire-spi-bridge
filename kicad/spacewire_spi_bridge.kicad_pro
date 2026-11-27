@@ -696,7 +696,7 @@
         "microvia_drill": 0.1,
         "name": "SE50",
         "pcb_color": "rgba(170, 0, 255, 0.702)",
-        "priority": 17,
+        "priority": 9,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.155,
         "tuning_profile": "",
@@ -852,10 +852,6 @@
         "pattern": "*D85_*"
       },
       {
-        "netclass": "Power",
-        "pattern": "Net-(U2-SW)"
-      },
-      {
         "netclass": "SE50",
         "pattern": "*SD_*"
       },
@@ -882,6 +878,10 @@
       {
         "netclass": "SE50",
         "pattern": "*CLK25*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(U2-SW)"
       }
     ]
   },
@@ -1046,13 +1046,14 @@
     ]
   ],
   "text_variables": {
-    "GIT_HASH": "9eb02d5",
-    "ISSUE_DATE": "2026-11-20",
+    "GIT_HASH": "41a6f13",
     "LICENSE": "CERN-OHL-P-2.0",
-    "REVISION": "2",
+    "RELEASE_DATE": "2026-11-27",
+    "RELEASE_TAG": "rev 3",
+    "REVISION": "3",
     "URL": "https://zeroerrata.eu",
-    "RELEASE_TAG": "rev 2",
-    "RELEASE_DATE": "2026-11-20"
+    "ISSUE_DATE": "2026-11-27",
+    "BUILD_ID": ""
   },
   "tuning_profiles": {
     "meta": {

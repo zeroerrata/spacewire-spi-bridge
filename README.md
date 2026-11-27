@@ -10,7 +10,7 @@
 <p align="center"><b>A stand-alone adapter between a SpaceWire link and a host MCU on SPI, with 32 MB of SDRAM buffering in a Lattice MachXO2.</b></p>
 
 <p align="center">
-  <img alt="rev 2" src="https://img.shields.io/badge/release-rev%202-1f6feb">
+  <img alt="rev 3" src="https://img.shields.io/badge/release-rev%203-1f6feb">
   <img alt="KiCad 10" src="https://img.shields.io/badge/KiCad-10-314cb6">
   <img alt="CERN-OHL-P-2.0" src="https://img.shields.io/badge/licence-CERN--OHL--P--2.0-2ea44f">
   <img alt="4 layers" src="https://img.shields.io/badge/layers-4-555">
@@ -27,7 +27,7 @@ Revision 2 places a dedicated 100 nF decoupling capacitor on the bottom side rig
 ## Features
 
 - Lattice LCMXO2-7000HC-4TG144C (non-BGA, internal flash, single 3.3 V)
-- Winbond W9825G6KH 32 MB SDRAM at 100 MHz CL2 as packet FIFO in each direction
+- Alliance AS4C16M16SA 32 MB SDRAM (rev 3; Winbond W9825G6KH before) at 100 MHz CL2 as packet FIFO in each direction
 - SpaceWire port with a TI SN65LVDS049 LVDS PHY: micro-D 9S on flying leads or a 1 x 10 lab header
 - SPI slave mode 0 up to 80 MHz with IRQ, IRQ2 and RESET on a Pmod Type 2A header
 - USB-C 5 V (power only) to a TLV62569 3.3 V / 2 A buck
@@ -40,7 +40,7 @@ Revision 2 places a dedicated 100 nF decoupling capacitor on the bottom side rig
 | Board | 78.0 x 66.0 mm, 4 copper layers, 1.6 mm |
 | Finish | ENIG |
 | Parts | 102 |
-| Release | rev 2, 2026-11-20 |
+| Release | rev 3, 2026-11-27 |
 | SpaceWire | 1 port, 100 Mbit/s, LVDS 100 ohm |
 | Host interface | SPI slave, mode 0, up to 80 MHz, IRQ |
 | Buffer | 32 MB SDRAM, 16 bit, 100 MHz |
@@ -68,7 +68,7 @@ Predictions from the design data, not measurements.
 | [`docs/`](docs) | [schematic.pdf](docs/schematic.pdf), [board_layers.pdf](docs/board_layers.pdf) |
 | [`fabrication/`](fabrication) | Gerber and drill files (zip), bill of materials, pick-and-place |
 | [`images/`](images) | renders and copper layer pictures |
-| [`analysis/`](analysis) | simulation and analysis results: thermal |
+| [`analysis/`](analysis) | simulation and analysis results: bringup, dfm, eye, retpath, thermal |
 
 ## Verification
 
@@ -86,12 +86,13 @@ Predictions from the design data, not measurements.
 
 Found by the design review of this release; boards built from these files carry them:
 
-- The SpaceWire micro-D part number in the BOM (MWDM2L-9SCBR-6E5-18) mixes a board-mount and a wire-lead code and cannot be ordered as written; confirm the flying-lead (pigtail) part number with the maker before ordering. At release the SDRAM was marked not recommended for new designs and one capacitor obsolete: check stock and replacements.
-- Reflow balance: twelve small parts on the ground pour (e.g. R9, the status LEDs, R1 / R2) heat unevenly and may tombstone. Use a reflow profile with a 60-90 s soak at 150-180 C and inspect them.
+- Rev 3 orders the SpaceWire micro-D by the maker's correct code (Glenair MWDM2L-9S-6E5-18B); rev 1-2 BOMs carry a mixed code that cannot be ordered.
+- Reflow balance: from rev 3 the small ground pads connect through thermal reliefs; use a profile with a 60-90 s soak at 150-180 C and inspect the small parts.
+- SDRAM (rev 3): the Alliance part needs tRCD / tRP of at least 18 ns (2 cycles at 100 MHz) and its power-up sequence in the FPGA design; the Winbond -6 grade of earlier revisions is not recommended for new designs.
 
 ## Notes
 
-- The renders show the ZeroErrata house look (black solder mask); the released fabrication package specifies the fab's standard green mask. Choose the mask colour when you order.
+- The renders show the ZeroErrata house look; from rev 3 the fabrication package specifies it too: matte black solder mask, white silkscreen, ENIG.
 - The FPGA design (SpaceWire codec, FIFOs, SPI slave) is not part of this repository; check the pin map in Lattice Diamond before you order.
 
 ## Licence

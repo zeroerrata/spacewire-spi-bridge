@@ -6,11 +6,12 @@
 	(paper "A2")
 	(title_block
 		(title "SpaceWire to SPI bridge with SDRAM FIFO")
-		(date "2026-11-03")
-		(rev "2")
+		(date "${RELEASE_DATE}")
+		(rev "${REVISION}")
 		(comment 1 "MachXO2-7000HC, W9825G6KH 32 MB SDRAM FIFO, SN65LVDS049 PHY")
 		(comment 2 "SPI slave to 80 MHz (Pmod 2A) + IRQ; SpaceWire 100 Mbit/s")
 		(comment 3 "USB-C 5 V -> TLV62569 3.3 V (one rail); JTAG 1 x 10 for HW-USBN-2B")
+		(comment 4 "ZE-10  ${RELEASE_TAG} ${GIT_HASH}")
 	)
 	(lib_symbols
 		(symbol "Connector:USB_C_Receptacle_USB2.0_16P"
@@ -11460,7 +11461,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C45783"
+		(property "LCSC" "C602037"
 			(at 165.1 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -11482,7 +11483,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL21A226MAQNNNE"
+		(property "MPN" "CL21A226MAYNNNE"
 			(at 165.1 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -20831,7 +20832,7 @@
 		)
 		(uuid "2aef5f37-d800-4433-86be-54cf41c387d1")
 	)
-	(text "SDRAM FIFO (BANK 1 + CORNERS): W9825G6KH-6 32 MB, 100 MHz CL2"
+	(text "SDRAM FIFO (BANK 1 + CORNERS): AS4C16M16SA-6 32 MB, 100 MHz CL2, tRCD / tRP 2 cycles"
 		(exclude_from_sim no)
 		(at 204.47 120.65 0)
 		(effects
@@ -21640,7 +21641,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "W9825G6KH-6"
+		(property "Value" "AS4C16M16SA-6TCN"
 			(at 393.7 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21673,7 +21674,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C62246"
+		(property "LCSC" "C2063698"
 			(at 401.32 196.85 0)
 			(hide yes)
 			(show_name no)
@@ -21695,7 +21696,7 @@
 				)
 			)
 		)
-		(property "MPN" "W9825G6KH-6"
+		(property "MPN" "AS4C16M16SA-6TCN"
 			(at 401.32 196.85 0)
 			(hide yes)
 			(show_name no)
@@ -21706,7 +21707,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Winbond"
+		(property "Manufacturer" "Alliance Memory"
 			(at 401.32 196.85 0)
 			(hide yes)
 			(show_name no)
@@ -26424,7 +26425,7 @@
 				)
 			)
 		)
-		(property "MPN" "MWDM2L-9SCBR-6E5-18"
+		(property "MPN" "MWDM2L-9S-6E5-18B"
 			(at 317.5 317.5 0)
 			(hide yes)
 			(show_name no)
